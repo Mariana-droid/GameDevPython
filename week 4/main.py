@@ -1,9 +1,9 @@
 from room import Room
 from item import Item
-from character import Enemy, Friend
+from character import Character
 from rpginfo import RPGinfo
 from RoomsSetup import *
-#
+# Inventory and commands
 Inventory = []
 commands = ["go","talk","inspect","pick up","use","give","inventory"]
 
@@ -26,17 +26,6 @@ def help():
     for command in commands:
         print(" " + command + " |", end="")   
 
-#Creating the enemy
-Dave = Enemy("Dave","He is a decomposing corpse.")
-Dave.set_conversation("*inhuman grunts*")
-Dave.set_weakness("stake")
-
-#Creating the friend
-Joana = Friend("Joana","She is a small, brown-haired woman with a frown on her face.")
-Joana.set_conversation("I don't wanna talk. I'm so hungry.")
-Joana.set_afterGift("Thank you again for the food.")
-Joana.set_favGift("apple")
-Joana.set_inventory("sword")
 
 #Moving
 current_room = hall
@@ -58,8 +47,6 @@ while True:
     print("\n")
     current_room.get_details()
     character = current_room.get_character()
-    if character is not None:
-        character.describe()
     command = input("> ").lower()
     match command:
         #If the player wishes to move
@@ -72,29 +59,8 @@ while True:
                 character.talk()
             else:
                 print("There is no one here to talk to.")
-        #if the player wants to fight the character
-        case "fight":
-            if isinstance(character,Enemy):
-                item = input("What would you wish to fight " + character.get_name() + " with?\n> ").lower()
-                Answer = character.fight(item)
-                if Answer is False:
-                    exit()
-                current_room.set_character(None)
-            elif isinstance(character,Friend):
-                print("You can't fight " + character.get_name() + ".")
-            else:
-                print("There no one here to fight.")
-        case "give":
-            if isinstance(character,Friend):
-                gift = input("What would you like to give " + character.get_name() + "?\n> ").lower()
-                Answer = character.gift(gift)
-                if Answer is True:
-                    print("You got a " + character.get_inventory() + ".")
-            elif isinstance(character,Enemy):
-                print("You can't give stuff to an enemy.")
-            else:
-                print("No one here to give things to.")
-
+        #case "give":
+            
         case "inspect":
             Answer = input("What would you like to inspect?\n> ").lower()
             found = current_room.inspect(Answer)

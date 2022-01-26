@@ -1,5 +1,6 @@
 from room import Room
 from itemsSetup import *
+from characterSetup import *
 #Creating the rooms and the descriptions
 hall = Room("foyer")
 hall.set_description("A large foyer stands before you. You can tell it hasn't been used much. There are a few coats on the hanger,\n\
@@ -16,6 +17,7 @@ you can imagine.In the corner there is a fireplace. The long, mahogany table is 
 hallway = Room("hallway")
 hallway.set_description("The absence of windows or light reminds you of a horror movie. Shifting your gaze along the walls,\n\
 you can see different old paitings and photos. In the middle, as if blocking your way, stands a small, brown haired woman.")
+hallway.set_character(Joana)
 
 ballroom = Room("ballroom")
 ballroom.set_description("Dust flies in the air as you open the creaking door to go inside. The least visisted room of the house you gather,\
@@ -84,7 +86,7 @@ and unfortunaly it's too dark to look up the chimney.")
 dining_room.inspectable_obj("plate","The plate looks porcelain and the silverware is golden. But other than that, nothing special.")
 
 hallway.inspectable_obj("photos","You can an older couple with a woman in her 30s and baby girl. They smile for the picture in front of their house.")
-hallway.inspectable_obj("paintings","A painting of the house. It looks newer.")
+hallway.inspectable_obj("paintings","A painting of the house. It looks newly built.")
 
 
 #Putting objects in rooms

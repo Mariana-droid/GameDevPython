@@ -29,7 +29,7 @@ def help():
 
 #Moving
 current_room = hall
-#-------------------------------
+#-----------------------------------
 #Setting up the begining of the game!
 
 Grinstead_mansion = RPGinfo("Grinstead Mansion")
